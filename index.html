@@ -4,30 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>czodi</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <!-- Chargement de Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Configuration de Tailwind CSS pour utiliser la police Inter -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Police Inter de Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- Icônes Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
+    /* Styles personnalisés pour des animations spécifiques et des ajustements */
     body {
-      margin: 0;
-      background-color: #0d0d0d;
-      color: white;
+      /* Ajout du dégradé bleu et violet */
+      background: linear-gradient(to right, #4c51bf, #805ad5); /* Bleu-violet vers le violet */
       font-family: 'Inter', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-      min-height: 100vh;
-      overflow-x: hidden;
     }
 
-    .banner {
-      width: 100%;
-      max-height: 250px;
-      object-fit: cover;
-    }
-
+    /* Animation de fondu et de glissement pour les éléments */
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
@@ -48,67 +51,107 @@
       }
     }
 
-    img.profile {
-      border-radius: 100%;
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      margin: 1rem 0;
+    /* Animation du curseur clignotant pour le texte tapé */
+    .typing-cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.2em; /* Ajuster la hauteur pour qu'elle corresponde à la taille du texte */
+      background-color: white;
+      animation: blink 0.7s infinite;
+      vertical-align: middle; /* Aligner verticalement avec le texte */
+      margin-left: 2px; /* Espacement après le texte */
     }
 
-    h1 {
-      margin: 0;
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .links a {
-      display: block;
-      background-color: #1a1a1a;
-      color: white;
-      text-decoration: none;
-      padding: 12px 20px;
-      margin: 10px 0;
-      border-radius: 10px;
-      transition: all 0.3s ease;
-      transform: scale(1);
-    }
-
-    .links a:hover {
-      background-color: #333;
-      transform: scale(1.05);
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    }
-
-    .links i {
-      margin-right: 8px;
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
   </style>
 </head>
-<body>
+<body class="flex flex-col items-center justify-center min-h-screen text-white overflow-x-hidden p-4">
 
   <!-- Bannière -->
-  <img src="bg.jpg" alt="Bannière" class="banner fade-in">
+  <img src="https://placehold.co/1200x250/1a1a1a/white?text=Votre+Bannière+Ici" alt="Bannière" class="banner w-full max-h-64 object-cover rounded-xl shadow-lg fade-in">
 
   <!-- Profil -->
-  <img src="czodi-pfp.png" alt="czodi" class="profile fade-in">
-  <h1 class="fade-in">czodi</h1>
+  <img src="https://placehold.co/120x120/333333/white?text=czodi" alt="czodi" class="profile rounded-full w-32 h-32 object-cover border-4 border-gray-700 mt-8 mb-4 shadow-xl fade-in">
+  
+  <!-- Titre avec effet de frappe -->
+  <!-- Modifié pour séparer le texte et le curseur dans des spans distincts -->
+  <h1 class="text-4xl md:text-5xl font-extrabold mb-6 fade-in">
+    <span id="typed-text"></span><span id="typing-cursor" class="typing-cursor"></span>
+  </h1>
 
   <!-- Liens -->
-  <div class="links fade-in">
-    <a href="https://discord.com/invite/cfUDt7EypR" target="_blank" class="fade-in">
-      <i class="fab fa-discord"></i> Discord
+  <div class="links w-full max-w-sm md:max-w-md lg:max-w-lg space-y-4 fade-in">
+    <a href="https://discord.com/invite/cfUDt7EypR" target="_blank" class="flex items-center justify-center bg-gray-800 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-xl transition duration-300 ease-in-out transform hover:scale-105 shadow-md">
+      <i class="fab fa-discord text-xl mr-3"></i> Discord
     </a>
-    <a href="https://open.spotify.com/user/31ve325jnl3htqs4k7r7ilqhq7oe" target="_blank" class="fade-in">
-      <i class="fab fa-spotify"></i> Spotify
+    <a href="https://open.spotify.com/user/31ve325jnl3htqs4k7r7ilqhq7oe" target="_blank" class="flex items-center justify-center bg-gray-800 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-xl transition duration-300 ease-in-out transform hover:scale-105 shadow-md">
+      <i class="fab fa-spotify text-xl mr-3"></i> Spotify
     </a>
-    <a href="https://x.com/czodi_gd" target="_blank" class="fade-in">
-      <i class="fab fa-x-twitter"></i> X
+    <a href="https://x.com/czodi_gd" target="_blank" class="flex items-center justify-center bg-gray-800 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-xl transition duration-300 ease-in-out transform hover:scale-105 shadow-md">
+      <i class="fab fa-x-twitter text-xl mr-3"></i> X (Twitter)
     </a>
-    <a href="https://www.youtube.com/@czodi" target="_blank" class="fade-in">
-      <i class="fab fa-youtube"></i> YouTube
+    <a href="https://www.youtube.com/@czodi" target="_blank" class="flex items-center justify-center bg-gray-800 hover:bg-gray-700 text-white font-semibold py-3 px-6 rounded-xl transition duration-300 ease-in-out transform hover:scale-105 shadow-md">
+      <i class="fab fa-youtube text-xl mr-3"></i> YouTube
     </a>
   </div>
 
+  <!-- Message de Copie (caché par défaut) -->
+  <!-- Le bouton de partage a été supprimé -->
+  <div id="copyMessage" class="fixed bottom-8 bg-green-500 text-white px-5 py-3 rounded-lg shadow-lg hidden">
+    Lien copié dans le presse-papiers !
+  </div>
+
+  <script>
+    // Script pour l'effet de frappe du titre
+    // Cible maintenant des éléments span spécifiques pour le texte et le curseur
+    const typedTextElement = document.getElementById('typed-text');
+    const cursorElement = document.getElementById('typing-cursor');
+    const textToType = "czodi"; 
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100; // Vitesse de frappe
+    const deleteSpeed = 50; // Vitesse de suppression
+    const delayBetweenTexts = 1500; // Délai avant de commencer à supprimer/retaper
+
+    function typeWriter() {
+      const currentText = textToType.substring(0, charIndex);
+      typedTextElement.textContent = currentText; // Met à jour uniquement le span du texte
+
+      if (!isDeleting && charIndex < textToType.length) {
+        charIndex++;
+        setTimeout(typeWriter, typingSpeed);
+      } else if (isDeleting && charIndex > 0) {
+        charIndex--;
+        setTimeout(typeWriter, deleteSpeed);
+      } else if (!isDeleting && charIndex === textToType.length) {
+        // Le texte est entièrement tapé, on cache le curseur
+        if (cursorElement) {
+          cursorElement.style.display = 'none';
+        }
+        // Pour cette version, nous voulons qu'il reste tapé, donc pas de suppression.
+        // Si vous voulez le faire re-taper, décommentez les lignes suivantes
+        // setTimeout(() => {
+        //   isDeleting = true;
+        //   if (cursorElement) { cursorElement.style.display = ''; } // Réaffiche le curseur pour la suppression
+        //   typeWriter();
+        // }, delayBetweenTexts);
+      } else {
+        // Suppression terminée, recommence à taper
+        isDeleting = false;
+        charIndex = 0;
+        if (cursorElement) {
+          cursorElement.style.display = ''; // Réaffiche le curseur pour la frappe
+        }
+        setTimeout(typeWriter, delayBetweenTexts);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      typeWriter(); // Démarre l'animation de frappe
+    });
+  </script>
 </body>
 </html>
